@@ -1,0 +1,107 @@
+@(title: String)(implicit m : Messages, session: Session)
+
+<nav class="navbar navbar-default navbar-inverse navbar-static-top"  role="navigation">
+    <div class="container-fluid">
+        @* Pour l'affichage sur mobile (Apparemment) *@
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@routes.Application.index()">CJ Project</a><img class="navbar-brand" height="50px" src="@routes.Assets.versioned("images/logos/aperture.png")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Logo aperture"/>
+        </div>
+
+        @* Pour le reste de la navbar *@
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            @* Partie gauche de la navbar *@
+            <ul class="nav navbar-nav">
+                <li><a href="@routes.Application.index()">@Messages("tpl.nav.home")</a></li> <!--<li class="active">-->
+                <li><a href="@routes.Application.sources()">@Messages("tpl.nav.sources")</a></li>
+                <li><a href="@routes.Application.timeline()">@Messages("tpl.nav.conf")</a></li>
+                @if(session.get("user")!=None) {
+                    <li><a href="/favoris">Favoris</a></li>
+                }
+                @*<li class="dropdown">*@
+                    @*<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Dropdown <span class="caret"></span></a>*@
+                    @*<ul class="dropdown-menu" role="menu">*@
+                        @*<li><a href="#">Action</a></li>*@
+                        @*<li><a href="#">Another action</a></li>*@
+                        @*<li><a href="#">Something else here</a></li>*@
+                        @*<li class="divider"></li>*@
+                        @*<li><a href="#">Separated link</a></li>*@
+                        @*<li class="divider"></li>*@
+                        @*<li><a href="#">One more separated link</a></li>*@
+                    @*</ul>*@
+                @*</li>*@
+            </ul>
+
+            @* Barre de recherche *@
+            @*<form class="navbar-form navbar-left" role="search">*@
+                @*<div class="form-group">*@
+
+                    @*<input type="text" class="form-control" ng-model="toSearch" placeholder="@Messages("gen.word.search")" >*@
+                @*</div>*@
+                    @*<!-- <button type="submit" class="btn btn-default">Ok</button> -->*@
+                @*<button ng-click="rechercher()">Ok</button>*@
+            @*</form>*@
+
+            @* Partie droite de la navbar, avec  *@
+            <ul class="nav navbar-nav navbar-right">
+                @if(session.get("user")==None){
+                <li><p class="navbar-text">@Messages("tpl.nav.alreadyRegistered")</p></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>@Messages("tpl.nav.login")</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Saisir vos identifiants
+                                        <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">@Messages("tpl.nav.mail")</label>
+                                                <input type="email" class="form-control" name="login" id="exampleInputEmail2" placeholder="@Messages("tpl.nav.mail")" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">@Messages("tpl.nav.password")</label>
+                                                <input type="password" class="form-control" name="password" id="exampleInputPassword2" placeholder="@Messages("tpl.nav.password")" required>
+                                                <div id="error-login" style="display:none;color:red"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">@Messages("tpl.nav.signIn")</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="bottom text-center">
+                                        @Messages("tpl.nav.newUser") <a href="@routes.Application.inscription"><b>@Messages("tpl.nav.joinUs")</b></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if(session.get("user")!=None){
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>@session.get("user")</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <form class="form" role="form" method="post" action="/deconnexion" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">Se déconnecter</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav><!-- /.navbar -->

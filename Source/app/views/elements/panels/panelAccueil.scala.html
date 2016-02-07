@@ -1,0 +1,24 @@
+@(title : String, typePanel : String, classes : String, idPanel : String)(content: Html)(implicit m: Messages)
+
+@*
+panelAccueil : affiche un thumbnail avec une url d'image
+
+titre : titre du panel
+typePanel : primary, success, info, warning, danger (Modifie le look du panel)
+
+classes : les classes à adopter par le div autour (Pour la taille principalement)
+content : contenu HTML du panel
+
+*@
+
+<div class="@classes" id="@idPanel">
+    <div class="panel panel-@typePanel">
+        <div class="panel-heading">
+            <h3 class="panel-title">@title</h3>
+        </div>
+        <div class="panel-body">
+            @content
+        </div>
+    </div>
+</div>
+

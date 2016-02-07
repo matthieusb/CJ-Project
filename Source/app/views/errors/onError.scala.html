@@ -1,0 +1,14 @@
+@(throwable : Throwable)
+
+<html>
+    <head>
+        <link rel='stylesheet' href='@routes.Assets.versioned("bootstrap-3.3.6-dist/css/bootstrap.css")'>
+        <link rel='stylesheet' href='@routes.Assets.versioned("bootstrap-3.3.6-dist/css/bootstrap-theme.css")'>
+    </head>
+    <body>
+        <h2>Error 500 - An error occured </h2>
+        <p>@throwable.getMessage</p>
+
+        <img class="img-responsive" src="@routes.Assets.versioned("images/500.png")" alt="Error 500 Image"/>s
+    </body>
+</html>

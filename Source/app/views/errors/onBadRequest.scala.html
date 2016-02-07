@@ -1,0 +1,15 @@
+@(request: RequestHeader)
+
+<html>
+    <head>
+        <link rel='stylesheet' href='@routes.Assets.versioned("bootstrap-3.3.6-dist/css/bootstrap.css")'>
+        <link rel='stylesheet' href='@routes.Assets.versioned("bootstrap-3.3.6-dist/css/bootstrap-theme.css")'>
+    </head>
+    <body>
+        <h2>400 - Bad Request</h2>
+        <p>You requested: @request.path</p>
+        @*<p>Error encountered : @error</p>*@
+
+        <img class="img-responsive" src="@routes.Assets.versioned("images/400.png")" alt="Error 400 Image"/>
+    </body>
+</html>

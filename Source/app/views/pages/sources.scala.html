@@ -1,0 +1,183 @@
+@(title: String)(implicit m: Messages, session: Session)
+
+@main(title) {
+
+    <div ng-controller="WebsocketCtrl">
+        <div id="notificationZone">
+
+        </div>
+
+        @elements.panels.panelAccueil(Messages("source.panel.search.title"),"primary","col-sm-6 col-md-6 col-xs-12","panelSearch") {
+            <form>
+                <fieldset class="form-group">
+                    <label for="wordSearched">@Messages("source.search.label")</label>
+                    <input required type="text" class="form-control" id="wordsSearched" ng-model="wordsSearched" ng-change="toSearch=toSearchAdvanced" placeholder="@Messages("source.search.placeholder")">
+                    <small class="text-muted">@Messages("source.search.note")</small>
+                </fieldset>
+                <button type="submit" class="btn btn-primary" ng-click="rechercheSelonSources()">@Messages("source.search")</button>
+            </form>
+        }
+
+        @elements.panels.panelCheckboxes(Messages("source.panel.search.choices"),"panel-primary","col-sm-6 col-md-6 col-xs-12", "panelChoice","choiceList") {
+            @elements.forms.checkbox("youtubeCheckboxId", "youtubeCheckboxName", "", "label-primary") {
+                <img class="" height="30px" src="@routes.Assets.versioned("images/logos/youtube.png")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Icone Youtube"/>
+            }
+            @elements.forms.checkbox("infoqCheckboxId", "infoqCheckboxName", "", "label-primary") {
+                <img class="" height="30px" src="@routes.Assets.versioned("images/logos/infoq.jpeg")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Icone InfoQ"/>
+            }
+            @elements.forms.checkbox("ieeCheckboxId", "ieeCheckboxName", "", "label-primary") {
+                <img class="" height="30px" src="@routes.Assets.versioned("images/logos/iee.png")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Icone IEEE"/>
+            }
+            @elements.forms.checkbox("dvptcomCheckboxId", "dvptcomCheckboxName", "", "label-primary") {
+                <img class="" height="30px" src="@routes.Assets.versioned("images/logos/developpezcom.jpeg")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Icone Developpezcom"/>
+            }
+            @elements.forms.checkbox("wikicfpCheckboxId", "wikicfpCheckboxName", "", "label-primary") {
+                <img class="" height="30px" src="@routes.Assets.versioned("images/logos/wikicfp.png")" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="Icone WikiCFP"/>
+            }
+        }
+
+        <div id="divResultYoutube" style="display:none">
+        @elements.panels.panelAccueil(Messages("results.youtube.panelLabel"),"danger","col-sm-12 col-md-12 col-xs-12","panelResultYoutube") {
+            <p ng-show="!resultsVid.length">Aucun résultat trouvé !</p>
+            <div class="row-fluid">
+                <div  dir-paginate="video in resultsVid | itemsPerPage: 4" pagination-id="youtube">
+                    <div class="col-sm-6 col-md-3 col-xs-12">
+                        <div  class="thumbnail thumbnailHauteur" id="{{video.videoId}}">
+                            <img class="img-responsive" ng-src={{video.image}} onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="DU FUTUR"/>
+                            <div class="caption">
+                                <h3>{{video.title}}</h3>
+                                <p><a target="_blank" href="https://youtube.com/watch?v={{video.videoId}}" class="btn btn-primary" role="button">Lien</a>
+                                    @if(session.get("user")!=None){
+                                        <button ng-if="isIn=(favorisVideosID.indexOf(video.videoId) > -1)" videoID="{{video.videoId}}" my-widget="" title="{{video.title}}" description="{{video.description}}" publishedAt="{{video.publishedAt}}" image="{{video.image}}" class="btn btn-default" role="button">Supprimer favoris</button>
+                                        <button ng-if="!isIn" videoID="{{video.videoId}}" my-widget="" title="{{video.title}}" description="{{video.description}}" publishedAt="{{video.publishedAt}}" image="{{video.image}}" class="btn btn-default" role="button">Ajouter favoris</button></p>
+                                <p>{{video.description}}</p>
+                                <p>Publiée : {{video.publishedAt}}</p>
+
+                                }@*<button ng-click="ajoutFavVideo(video.id.videoId, video.snippet.title, video.snippet.description, video.snippet.publishedAt, video.snippet.thumbnails.medium.url)" class="btn btn-default" role="button">Ajouter favoris</button></p>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dir-pagination-controls template-url="@routes.Assets.versioned("javascripts/dirPagination.tpl.html")" pagination-id="youtube"></dir-pagination-controls>
+            </div>
+        }
+        </div>
+
+        <div id="divResultInfoQ" style="display:none">
+        @elements.panels.panelAccueil(Messages("results.infoq.panelLabel"),"success","col-sm-12 col-md-12 col-xs-12","panelResultInfoQ") {
+            <p ng-show="!results[0].length">Aucun résultat trouvé !</p>
+            <div class="row-fluid">
+                <div  dir-paginate="res in results[0] | itemsPerPage: 3" pagination-id="infoq">
+                    <div class="col-sm-6 col-md-4 col-xs-12">
+                        <div class="thumbnail thumbnailHauteur" id="{{res.link}}">
+                            <img ng-hide="res.urlImage == ''" class="img-responsive" ng-src="{{res.urlImage}}" alt="Image Resultat"/>
+                            <img ng-show="res.urlImage == ''" class="img-responsive" src="@routes.Assets.versioned("images/logos/infoq.jpeg")"   alt="Image Resultat"/>
+                            <div class="caption">
+                                <h3>{{res.title}}</h3>
+                                <p><a target="_blank" href="{{res.link}}" class="btn btn-primary" role="button">Lien</a>
+                                    @if(session.get("user")!=None){
+                                        <button ng-if="isIn=(favorisArticlesLink.indexOf(res.link) > -1)" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Supprimer favoris</button>
+                                        <button ng-if="!isIn" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Ajouter favoris</button>
+                                    }
+                                </p>
+                                <p>{{res.description}}</p>
+                                <p>Date : {{res.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dir-pagination-controls template-url="@routes.Assets.versioned("javascripts/dirPagination.tpl.html")" pagination-id="infoq"></dir-pagination-controls>
+            </div>
+        }
+        </div>
+
+        <div id="divResultIeee" style="display:none">
+        @elements.panels.panelAccueil(Messages("results.ieee.panelLabel"),"primary","col-sm-12 col-md-12 col-xs-12","panelResultIeee") {
+            <p ng-show="!results[1].length">Aucun résultat trouvé !</p>
+            <div class="row-fluid">
+                <div dir-paginate="res in results[1] | itemsPerPage: 3" pagination-id="ieee">
+                    <div class="col-sm-6 col-md-4 col-xs-12">
+                        <div class="thumbnail thumbnailHauteur" id="{{res.link}}">
+                            <img ng-hide="res.urlImage == ''" class="img-responsive" ng-src="{{res.urlImage}}" alt="Image Resultat"/>
+
+                            <img ng-show="res.urlImage == ''" class="img-responsive" src="@routes.Assets.versioned("images/logos/iee.png")"   alt="Image Resultat"/>
+
+                            <div class="caption">
+                                <h3>{{res.title}}</h3>
+                                <p><a target="_blank" href="{{res.link}}" class="btn btn-primary" role="button">Lien</a>
+                                    @if(session.get("user")!=None){
+                                        <button ng-if="isIn=(favorisArticlesLink.indexOf(res.link) > -1)" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Supprimer favoris</button>
+                                        <button ng-if="!isIn" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Ajouter favoris</button>
+                                    }
+                                </p>
+                                <p>{{res.description}}</p>
+                                <p>Date : {{res.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dir-pagination-controls template-url="@routes.Assets.versioned("javascripts/dirPagination.tpl.html")" pagination-id="ieee"></dir-pagination-controls>
+            </div>
+        }
+        </div>
+
+        <div id="divResultDvptcom" style="display:none">
+        @elements.panels.panelAccueil(Messages("results.dvptcom.panelLabel"),"info","col-sm-12 col-md-12 col-xs-12","panelResultDvptcom") {
+            <p ng-show="!results[2].length">Aucun résultat trouvé !</p>
+            <div class="row-fluid">
+                <div  dir-paginate="res in results[2] | itemsPerPage: 3" pagination-id="dvptcom">
+                    <div class="col-sm-6 col-md-4 col-xs-12">
+                        <div class="thumbnail thumbnailHauteur" id="{{res.link}}">
+                            <img ng-hide="res.urlImage == ''" class="img-responsive" ng-src="{{res.urlImage}}" alt="Image Resultat"/>
+
+                            <img ng-show="res.urlImage == ''" class="img-responsive" src="@routes.Assets.versioned("images/logos/devloppezcom.jpeg")"   alt="Image Resultat"/>
+                            <div class="caption">
+                                <h3>{{res.title}}</h3>
+                                <p><a target="_blank" href="{{res.link}}" class="btn btn-primary" role="button">Lien</a>
+                                    @if(session.get("user")!=None){
+                                        <button ng-if="isIn=(favorisArticlesLink.indexOf(res.link) > -1)" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Supprimer favoris</button>
+                                        <button ng-if="!isIn" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Ajouter favoris</button>
+                                    }
+                                </p>
+                                <p>{{res.description}}</p>
+                                <p>Date : {{res.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dir-pagination-controls template-url="@routes.Assets.versioned("javascripts/dirPagination.tpl.html")" pagination-id="dvptcom"></dir-pagination-controls>
+            </div>
+        }
+        </div>
+
+        <div id="divResultWikicfp" style="display:none">
+        @elements.panels.panelAccueil(Messages("results.wikicfp.panelLabel"),"warning","col-sm-12 col-md-12 col-xs-12","panelResultWikiCfp") {
+            <p ng-show="!results[3].length">Aucun résultat trouvé !</p>
+            <div class="row-fluid">
+                <div  dir-paginate="res in results[3] | itemsPerPage: 3" pagination-id="wikicfp">
+                    <div class="col-sm-6 col-md-4 col-xs-12">
+                        <div class="thumbnail thumbnailHauteurWikiCfp" id="{{res.link}}">
+                            <img ng-hide="res.urlImage == ''" class="img-responsive" ng-src="{{res.urlImage}}" alt="Image Resultat"/>
+
+                            <img ng-show="res.urlImage == ''" class="img-responsive" src="@routes.Assets.versioned("images/logos/wikicfp.png")"   alt="Image Resultat"/>
+                            <div class="caption">
+                                <h3>{{res.title}}</h3>
+                                <p><a target="_blank" href="{{res.link}}" class="btn btn-primary" role="button">Lien</a>
+                                    @if(session.get("user")!=None){
+                                        <button ng-if="isIn=(favorisArticlesLink.indexOf(res.link) > -1)" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Supprimer favoris</button>
+                                        <button ng-if="!isIn" my-article="" title="{{res.title}}" description="{{res.description}}" link="{{res.link}}" date="{{res.date}}" urlImage="{{res.urlImage}}" categories="{{res.categories}}" class="btn btn-default" role="button">Ajouter favoris</button>
+                                    }
+                                </p>
+                                <p>{{res.description}}</p>
+                                <p>Date : {{res.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dir-pagination-controls template-url="@routes.Assets.versioned("javascripts/dirPagination.tpl.html")" pagination-id="wikicfp"></dir-pagination-controls>
+            </div>
+        }
+        </div>
+
+    </div>
+} @* Fin HTML Main *@

@@ -1,0 +1,11 @@
+# Lancement du client mongo
+mongod --dbpath /mongodata/db --smallfiles
+
+# ------------------ Création de la bdd
+use vtBDD
+
+# ------------------ Suppressions
+db.users.remove()
+
+# ------------------ Insertions table utilisateur
+db.users.insert({"login" : "test@test.test", "password" : "test", "videos": []})

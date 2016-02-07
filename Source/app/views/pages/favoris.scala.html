@@ -1,0 +1,52 @@
+@(title: String)(implicit m: Messages, session: Session)
+
+@main(title) {
+    <div ng-controller="favorisCTRL">
+    @elements.panels.panelAccueil("Vidéos favorites","primary","col-sm-12 col-md-12 col-xs-12","panelBookmarks") {
+
+            <div class="row">
+                <p ng-show="!favorisVideos.length">Aucune vidéo favorite trouvée !</p>
+                <div ng-repeat="favori in favorisVideos">
+                    <div my-favoris="" videoID="{{favori.videoId}}" class="col-sm-6 col-md-3 col-xs-12">
+                        <div class="thumbnail thumbnailHauteur" id="{{favori.videoId}}">
+                            <img id="image" class="img-responsive" ng-src={{favori.image}} onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="DU FUTUR"/>
+                            <div class="caption">
+                                <h3 id="title">{{favori.title}}</h3>
+                                <p id="description">{{favori.description}}</p>
+                                <p>Publiée : <i id="publishedat">{{favori.publishedAt}}</i></p>
+
+                                <p><a target="_blank" href="https://youtube.com/watch?v={{favori.videoId}}" class="btn btn-primary" role="button">Lien</a>
+                                    <button id="supprimervideo" class="btn btn-default" role="button">Supprimer favoris</button></p>
+                                @*<button ng-click="ajoutFavVideo(video.id.videoId, video.snippet.title, video.snippet.description, video.snippet.publishedAt, video.snippet.thumbnails.medium.url)" class="btn btn-default" role="button">Ajouter favoris</button></p>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    }
+    @elements.panels.panelAccueil("Articles favoris","primary","col-sm-12 col-md-12 col-xs-12","panelBookmarks") {
+        <div class="row-fluid">
+            <p ng-show="!favorisArticles.length">Aucun article favori trouvé !</p>
+            <div ng-repeat="res in favorisArticles">
+                <div my-favoris="" class="col-sm-6 col-md-3 col-xs-12">
+                    <div class="thumbnail thumbnailHauteur" id="{{res.link}}">
+                        <img ng-hide="res.urlImage == ''" class="img-responsive" ng-src="{{res.urlImage}}" alt="Image Resultat"/>
+                        <img ng-show="res.urlImage == ''" class="img-responsive" src="@routes.Assets.versioned("images/imageNotFound.jpg")"   alt="Image Resultat"/>
+
+                        <div class="caption">
+                            <h3>{{res.title}}</h3>
+                            <p><a id="link" target="_blank" href="{{res.link}}" class="btn btn-primary" role="button">Lien</a>
+                                <button id="supprimerarticle" class="btn btn-default" role="button">Supprimer favoris</button>
+                            </p>
+                            <p>{{res.description}}</p>
+                            <p>Date : {{res.date}} {{res.urlImage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+    @* Fin HTML Panel Accueil *@
+} @* Fin HTML Main *@

@@ -1,0 +1,67 @@
+tpl.main.title=CJ Project
+
+# General
+gen.word.or=ou
+gen.word.search=Rechercher
+
+# Titles
+page.Home.title=Bienvenue
+page.Home.panelNews= À la une
+page.home.panelKeywords= Résultats sur les mots clés (Cliquez sur un mot clé pour lancer une recherche)
+page.Home.inscription=Inscription
+
+# Navbar
+tpl.nav.home=Accueil
+tpl.nav.login=Login
+tpl.nav.alreadyRegistered=Déjà enregistré ?
+tpl.nav.mail=Adresse e-mail
+tpl.nav.password=Mot de passe
+tpl.nav.passwordForgot=Mot de passe oublié ?
+tpl.nav.signIn=Se connecter
+tpl.nav.keepLogged=Rester connecté
+tpl.nav.newUser=Nouvel utilisateur ?
+tpl.nav.joinUs=Nous rejoindre
+tpl.nav.sources=Rechercher
+tpl.nav.conf=Conférences
+
+# Footer
+foot.title.aboutUs=À propos de Aperture Science
+foot.sentence.aboutUs=Aperture Science est une société de recherche scientifique créée par Cave Johnson. Le Centre d''Enrichissement d''Aperture Science teste continuellement les produits d''Aperture Science, ainsi que les humains qui les utilisent.
+foot.word.prices=Frais de scolarité
+foot.word.site=Site Officiel
+
+# Identification
+page.Login.title=Login
+page.Prof.title=Professeurs
+page.projects.title=Web services
+page.faq.title=Upload a file
+
+#Tumbnails
+thumbnail.nolinks=Aucun lien n''est disponible
+thumbnail.link.accessSite=Accéder au site
+
+# Sources page
+source.panel.search.title=Rechercher des articles/conférences
+source.panel.search.choices=Choisir les sources
+source.panel.title=Sources utilisées par le site
+source.infoq.label=InfoQ
+source.infoq.description=InfoQ est un site qui rassemble vidéos et articles de Veille technologique. Porté par une communauté de praticiens, il est dédié à faciliter la diffusion des connaissances et de l''innovation dans le développement logiciel en entreprise.
+source.youtube.label=Youtube
+source.youtube.description=Youtube est un site massif de vidéos édité par Google. Il contient des vidéos sur tous types de sujets et permet également de faire du streaming.
+source.ieee.label=IEEE
+source.ieee.description=IEEE promeut l''ingénierie pour la création, le développement, l''intégration, le partage et l''application du savoir en éléctronique et informatique. Le site comprend des conférences et des événements.
+source.dvptcom.label=Developpez.com
+source.dvptcom.description=Développez.com se concentre sur des articles et des tutoriels sur l'informatique et plus particulièrement la programmation avancée.
+source.wikicfp.label=WikiCFP
+source.wikicfp.description=WikiCFP répertorie des conférences et congrès dans le domaine de la technologie et l''ingénierie, à l''international.
+
+source.search=Lancer la recherche
+source.search.note=Entrez les mots clés à rechercher dans le champ ci-dessus
+source.search.placeholder=Mots clés
+source.search.label=Articles et conférences à rechercher
+
+results.youtube.panelLabel=Résultats obtenus sur Youtube
+results.infoq.panelLabel=Résultats obtenus sur InfoQ
+results.ieee.panelLabel=Résultats obtenus sur IEEE
+results.dvptcom.panelLabel=Résultats obtenus sur Developpez.com
+results.wikicfp.panelLabel=Résultats obtenus sur WikiCFP

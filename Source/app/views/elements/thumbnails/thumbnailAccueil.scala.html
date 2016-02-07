@@ -1,0 +1,17 @@
+@(alt : String, label : String, description : String, hrefBlue : String = "", labelBlue : String = "", hrefWhite : String = "", labelWhite : String = "")(urlImage : Html)(implicit m: Messages)
+
+@*
+thumbnailAccueil : affiche un thumbnail avec une url d'image
+
+urlImage : url complète de l'image
+alt : la contenu de la balise alt de l'image
+label : le label du thumbnail
+description : description du lien
+*@
+
+<div class="col-sm-6 col-md-4 col-xs-12">
+    <div class="thumbnail">
+        <img class="img-responsive" src="@urlImage" onerror=" this.src='@routes.Assets.versioned("images/imageNotFound.jpg")';" alt="@alt"/>
+        @elements.thumbnails.thumbnailCaption(label,description,hrefBlue, hrefWhite, labelBlue,labelWhite)
+    </div>
+</div>

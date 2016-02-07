@@ -1,0 +1,30 @@
+@(label : String, description : String, hrefBlue : String, hrefWhite : String, labelBlue : String, labelWhite : String)(implicit m: Messages)
+
+@*
+thumbnailAccueil : affiche un thumbnail avec une url d'image
+
+label : le label du thumbnail
+description : description du lien
+
+*@
+
+<div class="caption">
+    <h3>@label</h3>
+    <p>@description</p>
+
+    <p>
+        @* Display the buttons only if the href are mentionned *@
+
+        @if(hrefBlue == "" && hrefWhite == "") {
+            @Messages("thumbnail.nolinks")
+        } else {
+            @if(hrefBlue != ""){
+                <a href="@hrefBlue" class="btn btn-primary" role="button">@labelBlue</a>
+            }
+
+            @if(hrefWhite != ""){
+                <a href="@hrefWhite" class="btn btn-default" role="button">@labelWhite</a>
+            }
+        }
+    </p>
+</div>

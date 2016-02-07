@@ -1,0 +1,16 @@
+@(title: String, includesHeader: Html = Html(""))(content: Html)(implicit m: Messages, session: Session)
+
+<!DOCTYPE html>
+
+<html ng-app="appelsRest" lang="@m.lang">
+
+    @header(title, includesHeader)
+
+    <body>
+        @nav(title)
+
+        @content
+
+        @footer(m,session)
+    </body>
+</html>

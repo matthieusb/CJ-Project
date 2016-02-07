@@ -1,0 +1,10 @@
+@(title : String, typePanel : String, classes : String, idPanel : String, idListe : String)(listItems: Html)(implicit m: Messages)
+
+<div class="@classes" id="@idPanel">
+    <div class="panel @typePanel">
+        <div class="panel-heading">@title</div>
+        <ul class="list-group" id="@idListe">
+            @listItems
+        </ul>
+    </div>
+</div>

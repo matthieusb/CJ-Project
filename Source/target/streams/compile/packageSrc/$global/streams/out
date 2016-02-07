@@ -1,0 +1,37 @@
+[0m[[0minfo[0m] [0mPackaging /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/target/scala-2.11/projet-veille-techno_2.11-1.0-SNAPSHOT-sources.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	controllers/Application.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/controllers/Application.scala[0m
+[0m[[0mdebug[0m] [0m	Global.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/Global.scala[0m
+[0m[[0mdebug[0m] [0m	controllers/ActorsController.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/controllers/ActorsController.scala[0m
+[0m[[0mdebug[0m] [0m	messages[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/messages[0m
+[0m[[0mdebug[0m] [0m	model/RequestsHome.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/model/RequestsHome.scala[0m
+[0m[[0mdebug[0m] [0m	application.conf[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/application.conf[0m
+[0m[[0mdebug[0m] [0m	controllers/Formulaires.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/controllers/Formulaires.scala[0m
+[0m[[0mdebug[0m] [0m	cert.pem[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/cert.pem[0m
+[0m[[0mdebug[0m] [0m	logback.xml[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/logback.xml[0m
+[0m[[0mdebug[0m] [0m	actors/ActorHome.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/actors/ActorHome.scala[0m
+[0m[[0mdebug[0m] [0m	model/Mongodb.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/model/Mongodb.scala[0m
+[0m[[0mdebug[0m] [0m	actors/ActorFeeds.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/actors/ActorFeeds.scala[0m
+[0m[[0mdebug[0m] [0m	server_key[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/server_key[0m
+[0m[[0mdebug[0m] [0m	ca.pem[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/ca.pem[0m
+[0m[[0mdebug[0m] [0m	routes[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/routes[0m
+[0m[[0mdebug[0m] [0m	vcloud.crt[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/conf/vcloud.crt[0m
+[0m[[0mdebug[0m] [0m	model/XmlHandler.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/msb/Documents/Linux/ING3/Informatique/ProjetReactProgOpenData/git/ProjetReactProgOpenData/Source/app/model/XmlHandler.scala[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

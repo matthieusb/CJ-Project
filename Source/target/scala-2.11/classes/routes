@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET          /                   controllers.Application.index
+GET          /sources            controllers.Application.sources
+GET          /inscription        controllers.Application.inscription
+POST         /inscription        controllers.Formulaires.inscription
+POST         /login              controllers.Formulaires.login
+POST         /deconnexion        controllers.Formulaires.deconnexion
+POST         /ajoutFavVideo      controllers.Application.ajoutFavVideo
+POST         /removeFavVideo     controllers.Application.removeFavVideo
+GET          /getFavVideos       controllers.Application.getFavVideos
+POST         /ajoutFavArticle    controllers.Application.ajoutFavArticle
+POST         /removeFavArticle   controllers.Application.removeFavArticle
+GET          /getFavArticles     controllers.Application.getFavArticles
+GET          /favoris            controllers.Application.favoris
+GET          /timeline           controllers.Application.timeline
+
+# Actors
+GET    /searchRss                controllers.ActorsController.searchRss
+GET    /searchHome               controllers.ActorsController.searchHome
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file         controllers.Assets.versioned(path="/public", file: Asset)
+GET        /webjars/*file        controllers.WebJarAssets.at(file)

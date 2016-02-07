@@ -1,0 +1,16 @@
+@(id : String, name : String, label : String, labelClass : String)(content : Html)(implicit m: Messages)
+
+@*
+WARNING Has to be be surrounded by a 'panelCheckBoxes'
+
+labelClass : label-default label-primary label-success label-info label-warning label-danger
+@content could be used for inserting images
+*@
+<li class="list-group-item" ng-init="options.one.selected=true">
+    @label
+    @content
+    <div class="material-switch pull-right">
+        <input id="@id" name="@name" type="checkbox" ng-model="@id" ng-checked="options.one.selected"/>
+        <label for="@id" class="@labelClass"></label>
+    </div>
+</li>
