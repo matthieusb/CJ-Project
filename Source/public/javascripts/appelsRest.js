@@ -145,7 +145,7 @@ RESTApp.controller("favorisCTRL", ['$scope','$http','$rootScope', function($scop
 
 //fonction api rest youtube en javascript classique
 function loadYoutube(){
-	var youtubeToken = "AIzaSyDmfeIH4b6yuUbFfNRfDdJTqGf1LmJ9QuY";
+	var youtubeToken = "your youtube token here from developper account";
 	var publishedAfter = "2015-12-01T00:00:00Z";
 	var q="scala+programming";
 	var type="video";
